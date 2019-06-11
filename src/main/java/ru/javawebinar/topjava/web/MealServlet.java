@@ -1,23 +1,27 @@
 package ru.javawebinar.topjava.web;
 
 import org.slf4j.Logger;
+import ru.javawebinar.topjava.util.MealsUtil;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.time.format.DateTimeFormatter;
 
 import static org.slf4j.LoggerFactory.getLogger;
 
-public class UserServlet extends HttpServlet {
+public class MealServlet extends HttpServlet {
     private static final Logger log = getLogger(UserServlet.class);
+    private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("MM/dd/yyyy 'at' hh:mm a");
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        log.debug("redirect to users");
+        log.debug("redirect to meals");
 
-        request.getRequestDispatcher("jsp/users.jsp").forward(request, response);
-        //response.sendRedirect("jsp/users.jsp");
+        request.setAttribute("meals", MealsUtil.getWithExcees(MealsUtil.getTest(), 2000));
+        request.setAttribute("formatter", FORMATTER);
+        request.getRequestDispatcher("jsp/meals.jsp").forward(request, response);
     }
 }

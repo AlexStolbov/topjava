@@ -20,7 +20,7 @@ public class MealServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         log.debug("redirect to meals");
 
-        request.setAttribute("meals", MealsUtil.getWithExcees(MealsUtil.getTest(), 2000));
+        request.setAttribute("meals", MealsUtil.getWithExcess(MealsUtil.getTestStorage().getAllSorted(), 2000));
         request.setAttribute("formatter", FORMATTER);
         request.getRequestDispatcher("jsp/meals.jsp").forward(request, response);
     }

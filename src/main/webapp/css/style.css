@@ -16,3 +16,7 @@ table, th, td{
 tr.red {
     color: #ff0b2c;
 }
+
+tr.green {
+    color: #03d01c;
+}

@@ -1,11 +1,5 @@
 package ru.javawebinar.topjava.service;
 
-import ru.javawebinar.topjava.model.Meal;
-import ru.javawebinar.topjava.model.User;
-import ru.javawebinar.topjava.util.exception.NotFoundException;
-
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Service;
@@ -37,17 +31,6 @@ public class MealService {
     public void delete(int id, int userId) {
         checkNotFoundWithId(repository.delete(id, userId), id);
     }
-
-
-    Meal create(Meal meal);
-
-    void delete(int id) throws NotFoundException;
-
-    Meal get(int id) throws NotFoundException;
-
-    void update(Meal meal);
-
-    List<Meal> getAll();
 
     public List<Meal> getBetweenDates(@Nullable LocalDate startDate, @Nullable LocalDate endDate, int userId) {
         return getBetweenDateTimes(adjustStartDateTime(startDate), adjustEndDateTime(endDate), userId);
